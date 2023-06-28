@@ -92,3 +92,40 @@ it("MULTIPLY: single array and numbers", () => {
   expect(calculator.multiply([4, 12, 1], -1)).toBe(-48);
   expect(calculator.multiply([-3, 11, -3, -2])).toBe(-198);
 });
+
+// DIVIDE TESTS
+
+it("DIVIDE: one value", () => {
+  expect(calculator.divide(0)).toBe(0);
+  expect(calculator.divide(4)).toBe(4);
+});
+
+it("DIVIDE: two ints", () => {
+  expect(calculator.divide(0, 5)).toBe(0);
+  expect(calculator.divide(12, 4)).toBe(3);
+  expect(calculator.divide(10, -2)).toBe(-5);
+});
+
+it("DIVIDE: second value 0", () => {
+  expect(calculator.divide(5, 0)).toThrow("zero");
+  expect(calculator.divide(12, 4)).toBe(3);
+  expect(calculator.divide(10, -2)).toBe(-5);
+});
+
+// it("divide: multiple ints", () => {
+//   expect(calculator.divide(0, 5, 2)).toBe(0);
+//   expect(calculator.divide(4, 12, 1)).toBe(48);
+//   expect(calculator.divide(-3, 11, -3)).toBe(99);
+// });
+
+// it("divide: single array", () => {
+//   expect(calculator.divide([0, 5, 2])).toBe(0);
+//   expect(calculator.divide([4, 12, 1])).toBe(48);
+//   expect(calculator.divide([-3, 11, -3])).toBe(99);
+// });
+
+// it("divide: single array and numbers", () => {
+//   expect(calculator.divide([0, 5, 2], 4)).toBe(0);
+//   expect(calculator.divide([4, 12, 1], -1)).toBe(-48);
+//   expect(calculator.divide([-3, 11, -3, -2])).toBe(-198);
+// });

@@ -31,7 +31,17 @@ const multiply = (initialValue, ...args) => {
 }
 
 const divide = (initialValue, ...args) => {
-  return initialValue;
+  if (Array.isArray(initialValue)) {
+    // the findIndex gives 0 if the first value is 0, or -1 if there's none, so check for > 0
+    if (initialValue.findIndex(val => val === 0) > 0) throw new Error("Divide by zero");
+  }
+  if (!args.length) return initialValue;
+
+  args = args.map(val => {
+    return Array.isArray(val) ?
+      val.reduce((prev, curr) => prev + curr, 0) :
+      val
+  });
 }
 
-module.exports = { add, subtract, multiply }
+module.exports = { add, subtract, multiply, divide }
