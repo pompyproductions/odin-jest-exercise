@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest --watch capitalize.test.js"
+    "test": "jest --watch --verbose .*.test.js"
   },
   "keywords": [],
   "author": "",
