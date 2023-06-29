@@ -93,6 +93,10 @@ it("MULTIPLY: single array and numbers", () => {
   expect(calculator.multiply([-3, 11, -3, -2])).toBe(-198);
 });
 
+it("MULTIPLY: arrays and numbers mixed", () => {
+  expect(calculator.multiply([3, 5, 2], -3, [0.5, -1])).toBe(45);
+})
+
 // DIVIDE TESTS
 
 it("DIVIDE: one value", () => {
@@ -106,26 +110,44 @@ it("DIVIDE: two ints", () => {
   expect(calculator.divide(10, -2)).toBe(-5);
 });
 
-it("DIVIDE: second value 0", () => {
-  expect(calculator.divide(5, 0)).toThrow("zero");
-  expect(calculator.divide(12, 4)).toBe(3);
-  expect(calculator.divide(10, -2)).toBe(-5);
+it("DIVIDE: multiple ints", () => {
+  expect(calculator.divide(0, 5, 2)).toBe(0);
+  expect(calculator.divide(12, 4, 1)).toBe(3);
+  expect(calculator.divide(-99, 11, -3)).toBe(3);
 });
 
-// it("divide: multiple ints", () => {
-//   expect(calculator.divide(0, 5, 2)).toBe(0);
-//   expect(calculator.divide(4, 12, 1)).toBe(48);
-//   expect(calculator.divide(-3, 11, -3)).toBe(99);
-// });
+it("DIVIDE: single array", () => {
+  expect(calculator.divide([0, 5])).toBe(0);
+  expect(calculator.divide([12, 4])).toBe(3);
+  expect(calculator.divide([10, -2])).toBe(-5);
+});
 
-// it("divide: single array", () => {
-//   expect(calculator.divide([0, 5, 2])).toBe(0);
-//   expect(calculator.divide([4, 12, 1])).toBe(48);
-//   expect(calculator.divide([-3, 11, -3])).toBe(99);
-// });
+it("DIVIDE: single array and numbers", () => {
+  expect(calculator.divide([0, 5], 3, 2)).toBe(0);
+  expect(calculator.divide([12, 4], 3)).toBe(1);
+  expect(calculator.divide([10, -2], -2)).toBe(2.5);
+});
 
-// it("divide: single array and numbers", () => {
-//   expect(calculator.divide([0, 5, 2], 4)).toBe(0);
-//   expect(calculator.divide([4, 12, 1], -1)).toBe(-48);
-//   expect(calculator.divide([-3, 11, -3, -2])).toBe(-198);
-// });
+it("DIVIDE: arrays and numbers mixed", () => {
+  expect(calculator.divide([180, 3, -2], 0.5, [-3, 4, 2, 2])).toBe(45);
+})
+
+it("DIVIDE: zero division", () => {
+  function zeroDivisionTwoInts() {
+    calculator.divide(5, 0)
+  }
+  function zeroDivisionMultipleInts() {
+    calculator.divide(5, 3, 0)
+  }
+  function zeroDivisionArgsArray() {
+    calculator.divide(5, [3, 0])
+  }
+  function zeroDivisionInitArray() {
+    calculator.divide([5, 0], 3)
+  }
+  expect(zeroDivisionTwoInts).toThrow("zero");
+  expect(zeroDivisionMultipleInts).toThrow("zero");
+  expect(zeroDivisionArgsArray).toThrow("zero");
+  expect(zeroDivisionInitArray).toThrow("zero");
+});
+
