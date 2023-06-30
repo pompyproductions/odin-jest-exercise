@@ -43,18 +43,20 @@ const divide = (initialValue, ...args) => {
     if (initialValue.findIndex(val => val === 0) > 0) throw new Error("Divide by zero");
     initialValue = initialValue.reduce((prev, curr) => prev / curr)
   }
+  console.log(initialValue)
   if (!args.length) return initialValue;
 
   for (let i = 0; i < args.length; i++) {
+    if (args[i] === 0) throw new Error("Divide by zero");
     if (Array.isArray(args[i])) {
       for (let val of args[i]) {
         console.log(val);
         if (val === 0) throw new Error("Divide by zero");
         initialValue /= val;
       }
+    } else {
+      initialValue /= args[i];
     }
-    if (args[i] === 0) throw new Error("Divide by zero");
-    initialValue /= args[i];
   }
 
   return initialValue;

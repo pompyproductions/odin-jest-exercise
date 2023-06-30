@@ -129,7 +129,7 @@ it("DIVIDE: single array and numbers", () => {
 });
 
 it("DIVIDE: arrays and numbers mixed", () => {
-  expect(calculator.divide([180, 3, -2], 0.5, [-3, 4, 2, 2])).toBe(45);
+  expect(calculator.divide([180, 3, -2], 0.5, [-3, 4, 2, 2])).toBe(1.25);
 })
 
 it("DIVIDE: zero division", () => {
