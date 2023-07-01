@@ -1,25 +1,44 @@
-function encodeLetter(letter, key) {
+function encryptLetter(letter, key) {
+  let charCode = letter.charCodeAt(0);
+  if (charCode > 64 && charCode <= 90) {
+    charCode = (charCode - 65 + key + 26) % 26 + 65;
+    return String.fromCharCode(charCode)
+  }
+  if (charCode > 96 && charCode <= 122) {
+    charCode = (charCode - 96 + key + 26) % 26 + 96;
+    return String.fromCharCode(charCode)
+  }
+  return letter
+}
+function decryptLetter(letter, key) {
+  let charCode = letter.charCodeAt(0);
+  if (charCode > 64 && charCode <= 90) {
+    charCode = (charCode - 65 - key + 26) % 26 + 65;
+    return String.fromCharCode(charCode)
+  }
+  if (charCode > 96 && charCode <= 122) {
+    charCode = (charCode - 96 - key + 26) % 26 + 96;
+    return String.fromCharCode(charCode)
+  }
   return letter
 }
 
-function encode(text, key) {
+function encrypt(text, key) {
   if (!key) return text;
   let encodedText = "";
-  // for (let i = 0; i < text.length; i++) {
-  //   const charCode = text.charCodeAt(i);
-  //   if (
-  //     (charCode > 97 && charCode <= 122) ||
-  //     (charCode> 224 && charCode <= 254)
-  //     ) {
-  //     return `${String.fromCharCode(firstLetterCode - 32)}${string.slice(1)}`
-  //   encodedText += String.fromCharCode(text.charCodeAt(i) + key)
-  // }
+  for (let i = 0; i < text.length; i++) {
+    encodedText += encryptLetter(text.charAt(i), key);
+  }
   return encodedText
 }
 
-function decode(text, key) {
+function decrypt(text, key) {
   if (!key) return text;
-  return text
+  let decodedText = "";
+  for (let i = 0; i < text.length; i++) {
+    decodedText += decryptLetter(text.charAt(i), key);
+  }
+  return decodedText
 }
 
-module.exports = { encode, decode };
+module.exports = { encrypt, decrypt };
